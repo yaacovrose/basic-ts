@@ -244,11 +244,16 @@ console.log(averageAge(mans))
 
 
 // 8
-function minAndMax(array:number[]):object {
-    const minMax:object = {}
+function minAndMax(array:number[]):minMax {
+    const minMax:minMax = {min: 0, max: 0}
     minMax.min = Math.min(... array)
     minMax.max = Math.max(... array)
     return minMax
+}
+
+interface minMax {
+    min: number
+    max: number
 }
 
 const array = [ 1, 2, 6, 8, 7, 3 ]
