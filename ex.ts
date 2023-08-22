@@ -56,7 +56,7 @@ type person = {
 }
 
 // 8
-function printPerson(person: person) {
+function printPerson(person: person): void {
     console.log(`name: ${person.name} age: ${person.age} isStudent: ${person.isStudent}`)
 }
 
@@ -87,7 +87,7 @@ type Reader = person & {
     favoriteBook: book
 }
 
-const man:Reader = {
+const man: Reader = {
     name: "yaacov",
     age: 13,
     isStudent: true,
@@ -99,17 +99,17 @@ const man:Reader = {
 }
 
 // 12
-function oldMen (mans:Reader[]):string {
-    let bigAge:number = mans[0].age
-    const oldMan:object = mans.filter((old) => old.age > bigAge)
+function oldMen(mans: Reader[]): string {
+    let bigAge: number = mans[0].age
+    const oldMan: object = mans.filter((old) => old.age > bigAge)
     return oldMan[0].name
 }
 
 
 // 13
-function oldBook (mans:Reader[]):object {
-    let year:number = mans[0].favoriteBook.Year
-    const old:object = mans.filter((book) => book.favoriteBook.Year < year)
+function oldBook(mans: Reader[]): book {
+    let year: number = mans[0].favoriteBook.Year
+    const old: object = mans.filter((book) => book.favoriteBook.Year < year)
     return old[0].favoriteBook
 }
 
@@ -150,3 +150,113 @@ const people: Reader[] = [
 
 console.log(oldMen(people))
 console.log(oldBook(people))
+
+
+// exercises- page 2
+// 1
+function evens(array: number[]): number[] {
+    const evensArray: number[] = array.filter((num) => num % 2 === 0)
+    return evensArray
+}
+
+console.log(evens([0, 1, 2, 3, 4, 5]))
+
+// 2
+function rectangleArea(rectangle: rectangle): number | string {
+    const area: number = rectangle.height * rectangle.width
+    return `the area of rectangle is: ${area}`
+}
+
+interface rectangle {
+    height: number
+    width: number
+}
+
+const rectangle1: rectangle = {
+    height: 10,
+    width: 5
+}
+console.log(rectangleArea(rectangle1))
+
+
+// 3
+function isPali(sentence: string): boolean {
+    const reverse: string = sentence.split('').reverse().join('')
+    return reverse === sentence
+}
+
+console.log(isPali('abaa'))
+
+// 4
+function capitalLetter(array: string[]): string[] {
+    const fixArray: string[] = array.map((item) => item[0].toUpperCase() + item.slice(1, item.length).toLowerCase())
+    return fixArray
+}
+console.log(capitalLetter([
+    "apple",
+    "banana",
+    "cherry",
+    "date",
+    "elderberry"
+]));
+
+// 5
+function removeDouble(array: number[]): number[] {
+    let filterDouble: number[] = [... new Set(array)]
+    return filterDouble
+}
+
+
+console.log(removeDouble([1, 2, 6, 2, 8, 2, 7, 3, 3]))
+
+
+// 6
+function acronyms(name: fullName): object {
+    return { firstInitial: name.first.slice(0, 1), lastInitial: name.last.slice(0, 1) }
+}
+
+interface fullName {
+    first: string
+    last: string
+}
+
+const fullName: fullName = {
+    first: 'yaacov',
+    last: 'rose'
+}
+console.log(acronyms(fullName));
+
+// 7
+function averageAge(array:object[]):number {
+    let age:number = 0
+    array.forEach((item) => age += item.age)
+    return age / array.length
+}
+
+
+const mans = [
+    { name: "John", age: 25 },
+    { name: "Jane", age: 30 },
+    { name: "Bob", age: 40 },
+]
+
+console.log(averageAge(mans))
+
+
+// 8
+function minAndMax(array:number[]):object {
+    const minMax:object = {}
+    minMax.min = Math.min(... array)
+    minMax.max = Math.max(... array)
+    return minMax
+}
+
+const array = [ 1, 2, 6, 8, 7, 3 ]
+console.log(minAndMax(array))
+
+// 9
+function reverse(array:number[]):number[] {
+    return array.reverse()
+}
+
+console.log(reverse([ 1, 2, 6, 8, 7, 3 ]))
